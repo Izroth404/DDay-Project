@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>After the Storm has passed and we're still here</title>
+  <link rel="stylesheet" href="site2.css">
+  <script src="js/script.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600&family=Dancing+Script:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header-box">
+    <h1>After the Storm has passed and we're still here. ✨</h1>
+    <p>I’ve spent a lot of time overthinking what to say, so I decided to build it instead.</p>
+    <p class="subtitle">"I'm not just raising the bar; I'm laying it all out for you."</p>
+    <a href="htmlfiles/about.html" class="btn">The Timeline ⏱️</a>
+  </header>
+
+  <div class="gif-container">
+    <iframe src="https://giphy.com/embed/7p3e2WCM0VEnm" width="100%" height="100%" style="position:relative"
+      frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+  </div>
+
+
+  <main class="content-grid">
+    <div class="card">
+      <h2>Inside My Mind</h2>
+      <p>I know you probably have a million questions about why I stayed distant, or why now. I tried to answer them
+        here.</p>
+      <a href="htmlfiles/questions.html" class="btn">Read More</a>
+    </div>
+
+    <div class="card">
+      <h2>The Verdict</h2>
+      <p>Now that I've shared my side... what are you thinking? I'm ready to hear it, whenever you're ready to say it.
+      </p>
+      <div class="btn-group">
+        <a href="" class="btn wa-btn" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Whatsapp
+        </a>
+        <a href="" class="btn mail-btn" target="_blank">
+          <i class="fa-solid fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+
+    <div class="card secret-card">
+      <div class="card-image-wrapper">
+        <img src="media/doc6.jpg" alt="Secret Hint" class="card-img">
+      </div>
+
+      <h2>Solve to find the secret? 🔐</h2>
+      <p>The key to the secret page lies in the solution to this exact differential equation:</p>
+
+
+      <div class="secret-input-area">
+        <input type="text" id="secret-answer" placeholder="No Cheating! Solve it yourself!">
+        <button onclick="checkSecret()" class="btn">Unlock Page</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Made with ❤️ for You
+    <p id="visit-count" style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;"></p>
+</footer>
+</body>
+
+</html>
