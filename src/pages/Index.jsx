@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 
-export default function Home() {
+export default function Index() {
     const [secretInput, setSecretInput] = useState('')
     const navigate = useNavigate()
 
@@ -72,7 +72,7 @@ export default function Home() {
                 {/* Card 3: Secret */}
                 <div className="card secret-card">
                     <div className="card-image-wrapper">
-                        <img src="/media/doc6.jpg" alt="Secret Hint" className="card-img" />
+                        <img src="media/doc6.jpg" alt="Secret Hint" className="card-img" />
                     </div>
                     <h2>Solve to find the secret? 🔐</h2>
                     <p>The key to the secret page lies in the solution to this exact differential equation:</p>

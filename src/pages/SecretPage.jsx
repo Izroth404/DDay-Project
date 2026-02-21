@@ -1,21 +1,22 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import confetti from 'canvas-confetti'
 
 export default function SecretPage() {
-    const [noPos, setNoPos] = useState({ left: '55%', top: 'auto' })
-    const [popupOpen, setPopupOpen] = useState(false)
-    const cardRef = useRef(null)
-    const noBtnRef = useRef(null)
-    const hoverSoundRef = useRef(null)
-    const yesSoundRef = useRef(null)
+  const [noPos, setNoPos] = useState({ left: '55%', top: 'auto' })
+  const [popupOpen, setPopupOpen] = useState(false)
+  const cardRef = useRef(null)
+  const noBtnRef = useRef(null)
+  const hoverSoundRef = useRef(null)
+  const yesSoundRef = useRef(null)
 
-    // Floating hearts
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const heart = document.createElement('div')
-            heart.className = 'heart'
-            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💗'
-            heart.style.cssText = `
+  // Floating hearts
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const heart = document.createElement('div')
+      heart.className = 'heart'
+      heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💗'
+      heart.style.cssText = `
         position: fixed;
         bottom: -20px;
         left: ${Math.random() * 100}vw;
@@ -26,42 +27,42 @@ export default function SecretPage() {
         z-index: 0;
         opacity: ${Math.random() * 0.5 + 0.4};
       `
-            document.body.appendChild(heart)
-            setTimeout(() => heart.remove(), 8000)
-        }, 380)
-        return () => clearInterval(interval)
-    }, [])
+      document.body.appendChild(heart)
+      setTimeout(() => heart.remove(), 8000)
+    }, 380)
+    return () => clearInterval(interval)
+  }, [])
 
-    function handleNoHover() {
-        if (hoverSoundRef.current) {
-            hoverSoundRef.current.currentTime = 0
-            hoverSoundRef.current.play().catch(() => { })
-        }
-        if (cardRef.current && noBtnRef.current) {
-            const cardRect = cardRef.current.getBoundingClientRect()
-            const btnRect = noBtnRef.current.getBoundingClientRect()
-            const maxX = cardRect.width - btnRect.width - 10
-            const maxY = cardRect.height - btnRect.height - 10
-            setNoPos({
-                left: Math.random() * maxX + 'px',
-                top: Math.random() * maxY + 'px',
-            })
-        }
+  function handleNoHover() {
+    if (hoverSoundRef.current) {
+      hoverSoundRef.current.currentTime = 0
+      hoverSoundRef.current.play().catch(() => { })
     }
-
-    function handleYes() {
-        if (yesSoundRef.current) {
-            yesSoundRef.current.play().catch(() => { })
-        }
-        if (window.confetti) {
-            window.confetti({ particleCount: 260, spread: 120, origin: { y: 0.65 } })
-        }
-        setTimeout(() => setPopupOpen(true), 300)
+    if (cardRef.current && noBtnRef.current) {
+      const cardRect = cardRef.current.getBoundingClientRect()
+      const btnRect = noBtnRef.current.getBoundingClientRect()
+      const maxX = cardRect.width - btnRect.width - 10
+      const maxY = cardRect.height - btnRect.height - 10
+      setNoPos({
+        left: Math.random() * maxX + 'px',
+        top: Math.random() * maxY + 'px',
+      })
     }
+  }
 
-    return (
-        <>
-            <style>{`
+  function handleYes() {
+    if (yesSoundRef.current) {
+      yesSoundRef.current.play().catch(() => { })
+    }
+    if (confetti) {
+      confetti({ particleCount: 260, spread: 120, origin: { y: 0.65 } })
+    }
+    setTimeout(() => setPopupOpen(true), 300)
+  }
+
+  return (
+    <>
+      <style>{`
         body {
           min-height: 100vh;
           display: flex;
@@ -203,51 +204,51 @@ export default function SecretPage() {
         }
       `}</style>
 
-            <audio ref={hoverSoundRef} src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3" />
-            <audio ref={yesSoundRef} src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" />
+      <audio ref={hoverSoundRef} src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3" />
+      <audio ref={yesSoundRef} src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" />
 
-            <div className="secret-card-inner" ref={cardRef}>
-                <span className="secret-emoji">🤭🤭</span>
-                <h2>XYZ,<br />Would you like to go out with me?</h2>
+      <div className="secret-card-inner" ref={cardRef}>
+        <span className="secret-emoji">🤭🤭</span>
+        <h2>XYZ,<br />Would you like to go out with me?</h2>
 
-                <div className="secret-buttons">
-                    <button id="yes-btn" onClick={handleYes}>Yes 💖</button>
-                    <button
-                        id="no-btn"
-                        ref={noBtnRef}
-                        style={{ left: noPos.left, top: noPos.top }}
-                        onMouseEnter={handleNoHover}
-                    >
-                        No 🙈
-                    </button>
-                </div>
+        <div className="secret-buttons">
+          <button id="yes-btn" onClick={handleYes}>Yes 💖</button>
+          <button
+            id="no-btn"
+            ref={noBtnRef}
+            style={{ left: noPos.left, top: noPos.top }}
+            onMouseEnter={handleNoHover}
+          >
+            No 🙈
+          </button>
+        </div>
 
-                <Link to="/" className="btn" style={{ marginTop: '20px', display: 'inline-block', position: 'relative' }}>
-                    🏠 Back to Home
-                </Link>
-                <div className="secret-hint">Some stories don't allow "no" ✨</div>
+        <Link to="/" className="btn" style={{ marginTop: '20px', display: 'inline-block', position: 'relative' }}>
+          🏠 Back to Home
+        </Link>
+        <div className="secret-hint">Some stories don't allow "no" ✨</div>
+      </div>
+
+      {popupOpen && (
+        <div className="gif-popup-overlay">
+          <div className="gif-popup-inner">
+            <div
+              className="tenor-gif-embed"
+              data-postid="20339407"
+              data-share-method="host"
+              data-aspect-ratio="0.75"
+              data-width="100%"
+            >
+              <a href="https://tenor.com/view/disco-time-bldk29-gif-20339407">Disco Time Bldk29 GIF</a>
             </div>
-
-            {popupOpen && (
-                <div className="gif-popup-overlay">
-                    <div className="gif-popup-inner">
-                        <div
-                            className="tenor-gif-embed"
-                            data-postid="20339407"
-                            data-share-method="host"
-                            data-aspect-ratio="0.75"
-                            data-width="100%"
-                        >
-                            <a href="https://tenor.com/view/disco-time-bldk29-gif-20339407">Disco Time Bldk29 GIF</a>
-                        </div>
-                        <script type="text/javascript" async src="https://tenor.com/embed.js" />
-                        <h3>Let's Party! 💃✨</h3>
-                        <button className="close-popup-btn" onClick={() => setPopupOpen(false)}>
-                            Close 🌸
-                        </button>
-                    </div>
-                </div>
-            )}
-        </>
-    )
+            <script type="text/javascript" async src="https://tenor.com/embed.js" />
+            <h3>Let's Party! 💃✨</h3>
+            <button className="close-popup-btn" onClick={() => setPopupOpen(false)}>
+              Close 🌸
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  )
 }

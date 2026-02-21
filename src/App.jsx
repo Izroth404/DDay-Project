@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Index from './pages/Index'
 import About from './pages/About'
 import Questions from './pages/Questions'
 import SecretPage from './pages/SecretPage'
@@ -18,7 +18,7 @@ import Sandakphu from './pages/memories/Sandakphu'
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/questions" element={<Questions />} />
             <Route path="/secret" element={<SecretPage />} />
